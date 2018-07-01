@@ -1,0 +1,3 @@
+export const FETCH_PROFILE = 'FETCH_PROFILE';
+export const NEW_PROFILE = 'NEW_PROFILE';
+export const FETCH_REQUEST = 'FETCH_REQUEST ';
