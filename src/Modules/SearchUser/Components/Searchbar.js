@@ -18,6 +18,7 @@ const styles = theme => ({
 		flex: 1,
 		marginLeft: 100,
 		marginRight: theme.spacing.unit,
+		// width: 1000,
 		borderBottom: "1px solid #fff",
 	},
 	color: {
@@ -45,37 +46,39 @@ const theme = createMuiTheme({
 	},
 });
 
-const Searchbar = ({ classes }) => {
-	return (
-		<MuiThemeProvider theme={theme}>
-			<form onSubmit={this.props.onHandleSubmit} className={classes.container}>
-				<TextField
-					onChange={this.props.onHandleChange}
-					name="username"
-					type="search"
-					autoFocus="true"
-					placeholder="Search User"
-					className={classes.textField}
-					margin="normal"
-					InputProps={{
-						startAdornment: (
-							<InputAdornment position="start">
-								<SearchIcon color="primary" />
-							</InputAdornment>
-						),
-						className: classes.color,
-						disableUnderline: true
-					}}
-					fullWidth
-				/>
-				<Button component={Link} to={'/about'} className={classes.Btn} size="large" color="primary">
-					About
+class Searchbar extends Component{
+	render(){
+		const { classes } = this.props;
+		return (
+			<MuiThemeProvider theme={theme}>
+				<form onSubmit={this.props.onHandleSubmit} className={classes.container}>
+					<TextField
+						onChange={this.props.onHandleChange}
+						name="username"
+						type="search"
+						autoFocus="true"
+						placeholder="Search User"
+						className={classes.textField}
+						margin="normal"
+						InputProps={{
+							startAdornment: (
+								<InputAdornment position="start">
+									<SearchIcon color="primary" />
+								</InputAdornment>
+							),
+							className: classes.color,
+							disableUnderline: true
+						}}
+						fullWidth
+					/>
+					<Button component={Link} to={'/about'} className={classes.Btn} size="large" color="primary">
+						About
 					</Button>
-			</form>
-		</MuiThemeProvider>
-	);
-};
-
+				</form>
+			</MuiThemeProvider>
+		);
+	}
+}
 Searchbar.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
