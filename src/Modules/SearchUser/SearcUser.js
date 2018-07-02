@@ -38,10 +38,11 @@ class SearchUser extends Component {
 				<AppBar position="static">
 					<Toolbar >
 						<Searchbar
-						fullWidth
+							fullWidth
 							text={this.state.text}
 							onHandleChange={this.onHandleChange}
-							onHandleSubmit={this.onHandleSubmit} />
+							onHandleSubmit={this.onHandleSubmit} 
+						/>
 					</Toolbar>
 				</AppBar>
 				{this.props.loading ? <LoadingSpinner /> : <Card userInfo={this.props.profile} />}

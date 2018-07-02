@@ -8,74 +8,76 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
-    textField: {
-        marginLeft: 100,
-        marginRight: theme.spacing.unit,
-        width: 1000,
-        borderBottom: "1px solid #fff",
-    },
-    color: {
-        color: 'white',
-    },
-    Btn: {
-        marginLeft: 50,
-      },
+	container: {
+		display: 'flex',
+		flexDirection: 'row',
+		width: '100%',
+		alignItems: 'center'
+	},
+	textField: {
+		flex: 1,
+		marginLeft: 100,
+		marginRight: theme.spacing.unit,
+		borderBottom: "1px solid #fff",
+	},
+	color: {
+		color: 'white',
+	},
+	Btn: {
+		marginLeft: 50,
+	},
 });
 
 const theme = createMuiTheme({
-    palette: {
-        primary: {
-            light: '#fff',
-            main: '#fff',
-            dark: '#fff',
-            contrastText: '#fff',
-        },
-        secondary: {
-            light: '#fff',
-            main: '#fff',
-            dark: '#fff',
-            contrastText: '#fff',
-        },
-    },
+	palette: {
+		primary: {
+			light: '#fff',
+			main: '#fff',
+			dark: '#fff',
+			contrastText: '#fff',
+		},
+		secondary: {
+			light: '#fff',
+			main: '#fff',
+			dark: '#fff',
+			contrastText: '#fff',
+		},
+	},
 });
 
-class Searchbar extends Component {
-    render() {
-        const { classes } = this.props;
-        return (
-            <form onSubmit={this.props.onHandleSubmit}>
-                <MuiThemeProvider theme={theme}>
-                    <TextField
-                        onChange={this.props.onHandleChange}
-                        name="username"
-                        type="search"
-                        autoFocus="true"
-                        placeholder="Search User"
-                        className={classes.textField}
-                        margin="normal"
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <SearchIcon color="primary" />
-                                </InputAdornment>
-                            ),
-                            className: classes.color,
-                        }}
-
-                    />
-                    <Link to={`/about`}>
-                        <Button className={classes.Btn} size="large" color="primary">
-                            About
-                        </Button>
-                    </Link>
-                </MuiThemeProvider>
-            </form>
-        );
-    }
-}
+const Searchbar = ({ classes }) => {
+	return (
+		<MuiThemeProvider theme={theme}>
+			<form onSubmit={this.props.onHandleSubmit} className={classes.container}>
+				<TextField
+					onChange={this.props.onHandleChange}
+					name="username"
+					type="search"
+					autoFocus="true"
+					placeholder="Search User"
+					className={classes.textField}
+					margin="normal"
+					InputProps={{
+						startAdornment: (
+							<InputAdornment position="start">
+								<SearchIcon color="primary" />
+							</InputAdornment>
+						),
+						className: classes.color,
+						disableUnderline: true
+					}}
+					fullWidth
+				/>
+				<Button component={Link} to={'/about'} className={classes.Btn} size="large" color="primary">
+					About
+					</Button>
+			</form>
+		</MuiThemeProvider>
+	);
+};
 
 Searchbar.propTypes = {
-    classes: PropTypes.object.isRequired,
+	classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(Searchbar);
