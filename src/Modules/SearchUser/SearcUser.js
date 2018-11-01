@@ -8,26 +8,20 @@ import { connect } from 'react-redux';
 import { fetchProfile, fetchRequest } from '../../actions/profileActions';
 
 class SearchUser extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			text: '',
-		};
+	state = {
+		text: '',
+	};
 
-		this.onHandleChange = this.onHandleChange.bind(this);
-		this.onHandleSubmit = this.onHandleSubmit.bind(this);
-	}
-
-	onHandleSubmit(event) {
+	onHandleSubmit = event => {
 		event.preventDefault();
-	}
+	};
 
-	onHandleChange(event) {
+	onHandleChange = event => {
 		const username = event.currentTarget.value;
 		if (username) {
-
-			this.props.fetchRequest();
-			this.props.fetchProfile(username);
+			// Due to Redux Thunk we have access to dispatch anyway
+			this.props.dispatch(fetchRequest()); // this.props.fetchRequest();
+			this.props.dispatch(fetchProfile(username)); // this.props.fetchProfile(username);
 		}
 
 	}
@@ -56,4 +50,22 @@ const mapStateToProps = state => ({
 	loading: state.getProfile.loading
 });
 
-export default connect(mapStateToProps, { fetchProfile, fetchRequest })(SearchUser);
+// const mapDispatchToProps = dispatch => ({
+// 	fetchProfile, // short hand syntax  fetchProfile: fetchProfile
+// 	fetchRequest,
+// });
+// export default connect(mapStateToProps, mapDispatchToProps)(SearchUser);
+// Usually dispatch to props
+// Action Creator
+// const addMessage = (message) => {
+//   return {
+//     type: 'ADD',
+//     message: message
+//   }
+// };
+
+// // change code below this line
+// const mapDispatchToProps = dispatch => ({ // returns object
+//   submitNewMessage: message => dispatch(addMessage(message)),
+// });
+export default connect(mapStateToProps)(SearchUser);
